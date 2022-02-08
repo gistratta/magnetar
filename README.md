@@ -7,9 +7,7 @@ pumping energy into the forward shock in the form of spin-down radiation.
 Under this assumption, **this code allows to extract magnetar magnetic field and spin period that better describe
 the properties of observed plateau in the X-ray afterglow.**
 
-The code is written in Python language and is based on the magnetar model formulated in Stratta et al. 2018, ApJ, 869, 155
-
-https://iopscience.iop.org/article/10.3847/1538-4357/aadd8f
+The code is written in Python language and is based on the magnetar model formulated in [Stratta et al. 2018, ApJ, 869, 155](https://iopscience.iop.org/article/10.3847/1538-4357/aadd8f)
 
 
 
@@ -17,7 +15,14 @@ https://iopscience.iop.org/article/10.3847/1538-4357/aadd8f
 
 The code runs under Python 3.8.x and requires the following modules:
 
-> ipython, astropy, numpy, matplotlib, scipy,  pandas, sympy
+*ipython, astropy, numpy, matplotlib, scipy,  pandas, sympy*
+
+Python can be simply installed though [Anaconda Individual Edition distribution platform](https://www.anaconda.com/products/individual).
+To create and activate a virtual environment with these dependencies just type:
+
+> conda env create -f magnetar.yml
+
+> conda activate magnetar
 
 To run the code:
 
@@ -38,9 +43,9 @@ Most of the input are predefined in "set_iniparam" module (see also section 5). 
 
 ##### GRB name
 Once the GRB name is given (e.g. 130603B), the code reads the corresponding data file in the 'data' directory (e.g. ./data/130603B.txt).
-The data file must have the Swift/XRT Repository format for the 0.3-10 keV flux light curve including the corresponding photon indexes.
+The data file must have the [Swift/XRT Repository](https://www.swift.ac.uk/xrt_curves/) format for the 0.3-10 keV flux light curve including the corresponding photon indexes.
 
-See the guidelines for downloading GRB products provided in the Swift/XRT Repository: https://www.swift.ac.uk/xrt_products/bulk.php
+See the [guidelines for downloading GRB products provided in the Swift/XRT Repository](https://www.swift.ac.uk/xrt_products/bulk.php)
 
 
 ##### GRB jet half-opening angle in deg
@@ -48,15 +53,14 @@ See the guidelines for downloading GRB products provided in the Swift/XRT Reposi
 If not known, you can set the jet half-opening angle to 90 deg, i.e. isotropic case.
 
 Some useful references where to find GRB  estimated jet opening angles are:
-- Wang X-G et al. 2018, Apj, 859, 160 https://doi.org/10.3847%2F1538-4357%2Faabc13
-- Wang F. et al. 2020, ApJ, 893, 77 https://iopscience.iop.org/article/10.3847/1538-4357/ab0a86/meta)
+- [Wang X-G et al. 2018, Apj, 859, 160](https://doi.org/10.3847%2F1538-4357%2Faabc13)
+- [Wang F. et al. 2020, ApJ, 893, 77](https://iopscience.iop.org/article/10.3847/1538-4357/ab0a86/meta)
 
 ##### GRB redshift
 
 Redshift is required to compare the afterglow luminosity with the magnetar one. If not know, you can put it to a fiducial value.
 
-See the useful GRB table by J. Greiner and collaborators:
-https://www.mpe.mpg.de/~jcg/grbgen.html
+See the useful [GRB table by J. Greiner and collaborators](https://www.mpe.mpg.de/~jcg/grbgen.html)
 
 
 ## 3. Output

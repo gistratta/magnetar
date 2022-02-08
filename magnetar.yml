@@ -1,0 +1,10 @@
+name: magnetar
+dependencies:
+  - python=3.7
+  - ipython
+  - astropy
+  - numpy 
+  - matplotlib
+  - scipy 
+  - pandas 
+  - sympy
