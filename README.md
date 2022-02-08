@@ -43,7 +43,16 @@ Most of the input are predefined in "set_iniparam" module (see also section 5). 
 
 ##### GRB name
 Once the GRB name is given (e.g. 130603B), the code reads the corresponding data file in the 'data' directory (e.g. ./data/130603B.txt).
-The data file must have the name of the GRB and extension ".txt". Data should be in the [Swift/XRT Repository](https://www.swift.ac.uk/xrt_curves/) format for the 0.3-10 keV "XRT unabsorbed flux light curves" including the corresponding photon indexes, available in the "Burst Analyser" repository.
+The data file must have the name of the GRB and extension ".txt".
+
+Data should be in the [Swift/XRT Repository](https://www.swift.ac.uk/xrt_curves/) format for the 0.3-10 keV "XRT unabsorbed flux light curves" including the corresponding photon indexes.
+
+The right format can be downloaded from the Swift/XRT Repository following these steps:
+* select the GRB name
+* click the "Burst Analyser" repository (on the top of the page)
+* scroll down to the "XRT unabsorbed flux light curves"
+* on the wideget (on the left) select "Subplot: Photon Index", "0.3-10 keV flux"
+* click on "Data file" and save data in the "data" directory by renaming the file as "GRBname.txt" (e.g. 130603B.txt) 
 
 
 ##### GRB jet half-opening angle in deg
