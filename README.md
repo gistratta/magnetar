@@ -17,7 +17,7 @@ The code runs under Python 3.8.x and requires the following modules:
 
 *ipython, astropy, numpy, matplotlib, scipy,  pandas, sympy*
 
-Python can be simply installed though [Anaconda Individual Edition distribution platform](https://www.anaconda.com/products/individual).
+Python can be simply installed through the [Anaconda Individual Edition distribution platform](https://www.anaconda.com/products/individual).
 To create and activate a virtual environment with these dependencies just type:
 
 > conda env create -f magnetar.yml
