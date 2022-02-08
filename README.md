@@ -43,9 +43,7 @@ Most of the input are predefined in "set_iniparam" module (see also section 5). 
 
 ##### GRB name
 Once the GRB name is given (e.g. 130603B), the code reads the corresponding data file in the 'data' directory (e.g. ./data/130603B.txt).
-The data file must have the [Swift/XRT Repository](https://www.swift.ac.uk/xrt_curves/) format for the 0.3-10 keV flux light curve including the corresponding photon indexes.
-
-See the [guidelines for downloading GRB products provided in the Swift/XRT Repository](https://www.swift.ac.uk/xrt_products/bulk.php)
+The data file must have the name of the GRB and extension ".txt". Data should be in the [Swift/XRT Repository](https://www.swift.ac.uk/xrt_curves/) format for the 0.3-10 keV "XRT unabsorbed flux light curves" including the corresponding photon indexes, available in the "Burst Analyser" repository.
 
 
 ##### GRB jet half-opening angle in deg
@@ -58,7 +56,7 @@ Some useful references where to find GRB  estimated jet opening angles are:
 
 ##### GRB redshift
 
-Redshift is required to compare the afterglow luminosity with the magnetar one. If not know, you can put it to a fiducial value.
+Redshift is required to compare the afterglow luminosity with the magnetar one. If not know, you can put it to a fiducial value (e.g. z=0.5).
 
 See the useful [GRB table by J. Greiner and collaborators](https://www.mpe.mpg.de/~jcg/grbgen.html)
 
