@@ -7,7 +7,7 @@ pumping energy into the forward shock in the form of spin-down radiation.
 Under this assumption, **this code allows to extract magnetar magnetic field and spin period that better describe
 the properties of observed plateau in the X-ray afterglow.**
 
-The code is written in Python language and is based on the magnetar model formulated in Stratta et al. 2018, ApJ, 869, 155 
+The code is written in Python language and is based on the magnetar model formulated in Stratta et al. 2018, ApJ, 869, 155
 
 https://iopscience.iop.org/article/10.3847/1538-4357/aadd8f
 
@@ -17,7 +17,7 @@ https://iopscience.iop.org/article/10.3847/1538-4357/aadd8f
 
 The code runs under Python 3.8.x and requires the following modules:
 
-> astropy, numpy, matplotlib, scipy,  pandas, sympy
+> ipython, astropy, numpy, matplotlib, scipy,  pandas, sympy
 
 To run the code:
 
