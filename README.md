@@ -57,7 +57,7 @@ The right format can be downloaded from the Swift/XRT Repository following these
 
 ##### GRB jet half-opening angle in deg
 
-If not known, you can set the jet half-opening angle to 90 deg, i.e. isotropic case.
+If not known, you can set the jet half-opening angle to 90 deg, i.e. isotropic case, or assume a fiducial value e.g. 5.0 deg
 
 Some useful references where to find GRB  estimated jet opening angles are:
 - [Wang X-G et al. 2018, Apj, 859, 160](https://doi.org/10.3847%2F1538-4357%2Faabc13)
@@ -81,8 +81,8 @@ The last column shows the time of the fit, so the user can have an overview of m
 - a png file with the afterglow light curve and the best fit models for &alpha;=0.9,0.5 and 0.1
 
 The file names indicate
-the GRB name, the magnetar half-opening angle and the rest frame energy band
-(e.g. 130603B_30.0deg_0.3_30.0keV.log and 130603B_30.0deg_0.3_30.0keV.png)
+the GRB name, the magnetar half-opening angle and the rest frame energy band and the morphology used for the lightcurve
+(e.g. 130603B_30.0deg_0.3_30.0keV_PA.log and 130603B_30.0deg_0.3_30.0keV_PA.png)
 
 ## 4. The code step by step
 
@@ -92,21 +92,21 @@ the GRB name, the magnetar half-opening angle and the rest frame energy band
 the rest frame energy band in "set_iniparam" and applying the K-correction,
 and by asking for the redshift and the jet opening angle.
 
-3) At this point the code asks to indicate the start and end time if the temporal window we want
-to consider for the fit (this step allows to remove the initial steep decay and possible late time steepening, not taken into account by the model)
+3) At this point the code asks to indicate the start and end time of the plateau and of the temporal window we want
+to consider for the fit 
 
-4) Once the afterglow data set showing the plateau and post-plateau features is defined, the code proceeds in fitting the magnetar model to the data.
+4) Once the afterglow morphology is defined, the code proceeds in computing a first guess model and then in fitting the model to the data.
 
-5) Results from fit are prompted on the screen and the code asks if the user wants to save the output or not.
+5) Results from fit are prompted on the screen
 
 
 ## 5. Magnetar default assumptions
 
 There are a number of assumptions on the magnetar properties that are defined in the "set_iniparam.py" module. Each of these assumptions can be changed as desired.
 
-- The magnetar is assumed to radiate all its energy within a cone of half-aperture "thetamdeg=30" [degrees].
+- The magnetar is assumed to radiate all its energy within a cone of half-aperture "thetamdeg=90" [degrees].
 - The magnetar mass and radius are set to M = 1.4  [solar mass] and r0 = 1.2  [10 km]
 - The magnetar angular momentum direction forms an angle theta_i = 90 [deg] with the magnetic field direction.
-- The magnetar bolometric luminosity is approximated with the luminosity computed in the 0.3-30 keV band, defined with the "Er1" and "Er2" variables. The K-correction will takes into account any change of this band.
-- The code keeps the magnetar model coefficient k<1 (where k = (4&epsilon;_e dlnt/dlnT), &epsilon;_e is the electron energy fraction and dlnt/dlnT describes the dynamical evolution of the shock, see Dall'Osso et al. 2011)
-- The code tests the magnetar model with fixed &alpha; = (3-n)/2 = 0.1, 0.5, 0.9, where n is the braking index (see Stratta et al. 2018)
+- The magnetar bolometric luminosity is approximated with the luminosity computed in the 1.0-30 keV band, defined with the "Er1" and "Er2" variables. The K-correction will takes into account any change of this band.
+- The code keeps the magnetar model coefficient k<1 (where k = (4&epsilon;_e dlnt/dlnT), &epsilon;_e is the electron energy fraction and dlnt/dlnT describes the dynamical evolution of the shock, see Dall'Osso et al. 2011) and estimate it as k=a2-1 where a2 is the post-plateau decay index
+- The code tests the magnetar model with fixed &alpha; = (3-n)/2 where n is the braking index. Initial value is se to 0, but any value <1.0 can be given (see Stratta et al. 2018)
