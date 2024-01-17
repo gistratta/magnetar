@@ -13,7 +13,7 @@ The code is written in Python language and is based on the magnetar model formul
 
 ## 2. To run the code
 
-The code runs under Python 3.8.x and requires the following modules:
+The code runs under Python >= 3.7.x or and requires the following modules:
 
 *ipython, astropy, numpy, matplotlib, scipy,  pandas, sympy*
 
@@ -34,7 +34,7 @@ or
 
 > python loglumfit.py
 
-As an example, the code has predefined default settings for the case of the short GRB 130603B (just press "enter" when a question is prompted).
+As an example, the code has predefined default settings for the case of the short GRB 151221A (just press "enter" when a question is prompted).
 
 
 ### 2.1 Required input
@@ -42,7 +42,7 @@ As an example, the code has predefined default settings for the case of the shor
 Most of the input are predefined in "set_iniparam" module (see also section 5). The following ones are asked to user while running the code:
 
 ##### GRB name
-Once the GRB name is given (e.g. 130603B), the code reads the corresponding data file in the 'data' directory (e.g. ./data/130603B.txt).
+Once the GRB name is given (e.g. 151221A), the code reads the corresponding data file in the 'data' directory (e.g. ./data/151221A.txt).
 The data file must have the name of the GRB and extension ".txt".
 
 Data should be in the [Swift/XRT Repository](https://www.swift.ac.uk/xrt_curves/) format for the 0.3-10 keV "XRT unabsorbed flux light curves" including the corresponding photon indexes.
@@ -52,7 +52,7 @@ The right format can be downloaded from the Swift/XRT Repository following these
 * click the "Burst Analyser" repository (on the top of the page)
 * scroll down to the "XRT unabsorbed flux light curves"
 * on the wideget (on the left) select "Subplot: Photon Index", "0.3-10 keV flux"
-* click on "Data file" and save data in the "data" directory by renaming the file as "GRBname.txt" (e.g. 130603B.txt) 
+* click on "Data file" and save data in the "data" directory by renaming the file as "GRBname.txt" (e.g. 151221A.txt) 
 
 
 ##### GRB jet half-opening angle in deg
@@ -78,11 +78,11 @@ in the "output" directory two files are generated:
 - a log file with the GRB name, the best fit model parameters, the start time of the fit, the GRB and magnetar half-opening angles, and the fit statistics.
 The last column shows the time of the fit, so the user can have an overview of multiple runs for the same source.
 
-- a png file with the afterglow light curve and the best fit models for &alpha;=0.9,0.5 and 0.1
+- a png file with the afterglow light curve and the best fit models 
 
 The file names indicate
 the GRB name, the magnetar half-opening angle and the rest frame energy band and the morphology used for the lightcurve
-(e.g. 130603B_30.0deg_0.3_30.0keV_PA.log and 130603B_30.0deg_0.3_30.0keV_PA.png)
+(e.g. 151221A_30.0deg_0.3_30.0keV_PA.log and 151221A_30.0deg_0.3_30.0keV_PA.png)
 
 ## 4. The code step by step
 
