@@ -82,7 +82,7 @@ The last column shows the time of the fit, so the user can have an overview of m
 
 The file names indicate
 the GRB name, the magnetar half-opening angle and the rest frame energy band and the morphology used for the lightcurve
-(e.g. 151221A_30.0deg_0.3_30.0keV_PA.log and 151221A_30.0deg_0.3_30.0keV_PA.png)
+(e.g. 151221A_30.0deg_1.0_30.0keV_PA.log and 151221A_30.0deg_1.0_30.0keV_PA.png)
 
 ## 4. The code step by step
 
