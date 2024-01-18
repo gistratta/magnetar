@@ -386,8 +386,6 @@ if lT0 > ltime[0]:
 
 
 
-plt.ioff()
-plt.show()
 
 
 #------------------------------------------------
@@ -402,6 +400,8 @@ print('If you are not happy with the fit, here some tips:')
 print('')
 print('1) try a different morphology keyword')
 print('2) try to change model start and end time (i.e. excluding some early and/or late data point)')
+print('')
+print('(to exit, close the plot window)')
 
 
 #------------------------------------------------
@@ -448,7 +448,7 @@ def saving(save):
 
     if save == 'y':
 
-        print('...saving the final plot')
+        print('...saving the final plot (to exit, close the plot window)')
         plt.savefig('./output/'+grb+'_thetam_'+thetamstr+'deg_'+str(Er1)+'_'+str(Er2)+'keV_'+morphology+'.png')
 
     else: 
@@ -459,4 +459,7 @@ def saving(save):
 
 
 saving(save)
+
+plt.ioff()
+plt.show()
 
