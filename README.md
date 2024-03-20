@@ -32,7 +32,7 @@ To run the code:
 
 or
 
-> python loglumfit.py
+> python -i loglumfit.py
 
 As an example, the code has predefined default settings for the case of the short GRB 151221A (just press "enter" when a question is prompted).
 
