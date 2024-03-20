@@ -307,7 +307,7 @@ if morphology == 'PA':
     logmodel_plateau_only_bf = model_ax_all.model_plateau(np.log10(t+0.1),k,B_bf,omi_bf,t00=T0,Ka1=a1_norm,KLi=Li_norm,L0=L0_aft,collfact=fb,alphax=alphax)
  
     # --- Plotting magnetar energy injection only component
-    plt.plot(np.log10(t),logmodel_plateau_only_bf,color='g',linestyle=':',label=('Best fit magnetar energy injection only'))
+    #plt.plot(np.log10(t),logmodel_plateau_only_bf,color='g',linestyle=':',label=('Best fit magnetar energy injection only'))
 
 
 ###########################################################################
@@ -332,7 +332,7 @@ if morphology == 'SP':
     logmodel_plateau_only_bf = model_ax_all.model_plateau(np.log10(t+0.1),k,B_bf,omi_bf,t00=T0,Ka1=a1_norm,KLi=Li_norm,L0=L0_aft,collfact=fb,alphax=alphax)
  
     # --- Plotting magnetar energy injection only component
-    plt.plot(np.log10(t),logmodel_plateau_only_bf,color='g',linestyle=':',label=('magnetar energy injection'))
+    #plt.plot(np.log10(t),logmodel_plateau_only_bf,color='g',linestyle=':',label=('magnetar energy injection'))
 
 
 
