@@ -26,13 +26,7 @@ To create and activate a virtual environment with the required dependencies just
 
 To run the code:
 
-> ipython
-
-> run loglumfit.py
-
-or
-
-> python -i loglumfit.py
+> python loglumfit.py
 
 As an example, the code has predefined default settings for the case of the short GRB 151221A (just press "enter" when a question is prompted).
 
