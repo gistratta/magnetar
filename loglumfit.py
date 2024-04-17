@@ -39,7 +39,7 @@ print('')
 
 plt.clf()
 plt.close()
-plt.ion()
+#plt.ion()
 
 print('')
 save = input('Do you want to write output file and save figure? [e.g. n]') or 'n'
@@ -106,8 +106,9 @@ plt.plot(ltime,llum,'.', label='Swift/XRT data',color='b')
 plt.errorbar(ltime, llum, yerr=[dllumm,dllump],fmt='none',ecolor='b')
 plt.xlabel('log time from trigger [s]')
 plt.ylabel('log Luminosity corr. for beaming [erg s^-1]')
-plt.show()
 
+plt.savefig('lc_data.png')
+#plt.show()
 
 
 
@@ -123,6 +124,10 @@ print('---------- Lightcurve Morphology Keyword ---')
 print(' SP  = steep decay + plateau (+ afterglow)')
 print(' PA  = (afterglow +) plateau + afterglow (i.e. no steep decay ')
 print('--------------------------------------------')
+print('')
+
+print('')
+print('--> !!! Please check the plot saved in lc_data.png !!! <--')
 print('')
 
 morphology = input('Type morphology keyword  [default: PA]') or 'PA'
@@ -193,12 +198,13 @@ if morphology == 'PA':
 
     # --- Temporal grid for the model plot (only for plot purposes)
     if lT0 < ltime[0]:
+        # if model starts before data:
         t=np.logspace(lT0,ltime[-1]+0.5, num=1000, base=10.0)
     else:
         t=np.logspace(ltime[0]-0.3,ltime[-1]+0.5, num=1000, base=10.0)
 
     # --- First guess magnetar model
-    logmodel=model_ax(np.log10(t),k,B,omi)
+    logmodel=model_ax(t,k,B,omi)
  
 
 #############################################################################
@@ -229,9 +235,16 @@ elif morphology == 'SP':
     def model_ax(logt,B,omi,delta):
         return model_ax_all.model_ax_all_steepdecay(logt,B,omi,delta,t00=T0_prompt,Ka1=a1_norm,KLi=Li_norm,collfact=fb,alphax=alphax,L0=L0_prompt,k=k)
 
+    # --- Temporal grid for the model plot (only for plot purposes)
+    if lT0 < ltime[0]:
+        # if model starts before data:
+        t=np.logspace(lT0,ltime[-1]+0.5, num=1000, base=10.0)
+    else:
+        t=np.logspace(ltime[0]-0.3,ltime[-1]+0.5, num=1000, base=10.0)
 
     # --- First guess magnetar model
-    logmodel=model_ax(np.log10(t),B,omi,delta)
+    #logmodel=model_ax(np.log10(t),B,omi,delta)
+    logmodel=model_ax(t,B,omi,delta)
 
 #############################################################################
 
