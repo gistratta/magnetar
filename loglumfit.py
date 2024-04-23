@@ -204,7 +204,7 @@ if morphology == 'PA':
         t=np.logspace(ltime[0]-0.3,ltime[-1]+0.5, num=1000, base=10.0)
 
     # --- First guess magnetar model
-    logmodel=model_ax(t,k,B,omi)
+    logmodel=model_ax(np.log10(t),k,B,omi)
  
 
 #############################################################################
@@ -244,7 +244,7 @@ elif morphology == 'SP':
 
     # --- First guess magnetar model
     #logmodel=model_ax(np.log10(t),B,omi,delta)
-    logmodel=model_ax(t,B,omi,delta)
+    logmodel=model_ax(np.log10(t),B,omi,delta)
 
 #############################################################################
 
