@@ -108,6 +108,7 @@ plt.xlabel('log time from trigger [s]')
 plt.ylabel('log Luminosity corr. for beaming [erg s^-1]')
 
 plt.savefig('lc_data.png')
+os.system('open '+'lc_data.png')
 #plt.show()
 
 
@@ -167,7 +168,7 @@ print('')
 # Fitting the plateau with a broken power law and finding the plateau end time tau and luminosity at tau 
 # and use best fit parameters to build first guess magnetar model
 
-# --- fitting the plateau and post plateau with a smoothed borken power law
+print('...Fitting the plateau and post plateau with a smoothed borken power law (SBPL)')
 ttotnew = ttot[np.where(ttot>T0_aft)]
 ltotnew = ltot[np.where(ttot>T0_aft)]
 popt, pcov = curve_fit(func_brokenpl,ttotnew,ltotnew,sigma = dl[np.where(ttot>T0_aft)],p0=(ltotnew[0],tau0,0.0,1.5),bounds =[(ltotnew[0]/10.0,tau0/10.0,-0.1,1.01),(ltotnew[0]*10,tau0*10,0.75,2.5)], maxfev=10000)
@@ -178,12 +179,18 @@ k = alpha2-1                            # radiative efficiency factor k+1 = alph
 
 
 # ---
-print('...Building first guess model')
+print('...Building first guess B and P from SBPL fit results (L_tau and tau) and Eq.9 in DallOsso et al. 2023)')
 
 P = np.sqrt(k*3*1e52/((L_tau/collf)*tau))  # NS spin period in ms
-B = (np.sqrt(7/tau)) * 100 * P             # NS magnetic field strenght in 10^14 Gauss
+B = (np.sqrt(6.8/tau)) * 100 * P           # NS magnetic field strenght in 10^14 Gauss (Eq.9 in DallOsso+2023)
 omi = 2*np.pi/P                            # NS spin frequency in 1e3 Hz
 alphax = 0.1                               # alphax = (3-n)/2 where n is the NS braking index (see Stratta et al. 2018)
+print('')
+print('First Guess B and P (from empitical SBPL fit):')
+print('B[10^14 Gauss] = ',B)
+print('P[ms] = ',P)
+print('')
+
 
 #############################################################################
 if morphology == 'PA':
@@ -210,7 +217,34 @@ if morphology == 'PA':
 #############################################################################
 elif morphology == 'SP':
 
-    L0_aft = ltotnew[0]                     # plateau luminosity at plateau start time  
+
+    # --- Empirical characterization of lightcurve
+
+    # fitting the plateau only with a broken power law and finding the plateau end time tau and luminosity at tau
+    ttotnew = ttot[np.where(ttot>T0_aft)]
+    ltotnew = ltot[np.where(ttot>T0_aft)]
+    popt, pcov = curve_fit(func_brokenpl,ttotnew,ltotnew,sigma = dl[np.where(ttot>T0_aft)],p0=(ltotnew[0],tau0,0.0,1.5),bounds =[(ltotnew[0]/10.0,tau0/10.0,-0.1,1.01),(ltotnew[0]*10,tau0*10,0.75,2.5)], maxfev=10000)
+
+    # plateau duration
+    tau = popt[1]
+    print('   -> estimated plateau duration (tau) = ', tau)
+
+    # plateau luminosity at tau
+    L_tau = popt[0]
+    print('   -> estimated plateau luminosity at tay (L_tau) = ', L_tau)
+
+    # plateau luminosity at plateau start time  
+    L0_aft = ltotnew[0]
+    print('   -> estimated plateau luminosity at plateau start (L0_aft) = ', L0_aft)
+
+    # post plateau decay index
+    alpha2 = popt[3]
+    print('   -> post plateau decay index = ', alpha2)
+
+    
+    # radiative efficiency factor k+1 = alpha2
+    k = alpha2-1
+
 
     # --- computing the steep decay index
 
@@ -227,9 +261,10 @@ elif morphology == 'SP':
         T0_prompt = ttotnews[int(nn/2.0)]
         L0_prompt = ltotnews[int(nn/2.0)]    
 
-    popt_s,pcov_s = curve_fit(func_powerlaw,ttotnews,ltotnews,sigma=dl[np.where((ttot<T0_aft) & (ttot>T0))], p0=(T0_prompt,-2.5,L0_prompt),bounds=[(0.5,-10.0,1e40),(1000.0,-1.5,1e52)])
-    delta = -popt_s[1]
-    
+    popt_s,pcov_s = curve_fit(func_powerlaw,ttotnews,ltotnews,sigma=dl[np.where((ttot<T0_aft) & (ttot>T0))], p0=(T0_prompt,-2.5,L0_prompt),bounds=[(0.5,-10.0,1e40),(1e6,-1.5,1e55)])
+    delta = -popt_s[1]  # module of steep decay index
+    print('   -> measured steep decay index (delta) = ', delta)
+
     
     # --- Magentar model for SP morphology
     def model_ax(logt,B,omi,delta):
@@ -239,8 +274,13 @@ elif morphology == 'SP':
     if lT0 < ltime[0]:
         # if model starts before data:
         t=np.logspace(lT0,ltime[-1]+0.5, num=1000, base=10.0)
+        print('temporal grid for the model plot between lT0=',lT0,' and ltime[-1]+0.5',ltime[-1]+0.5)
+        #print(t)
     else:
         t=np.logspace(ltime[0]-0.3,ltime[-1]+0.5, num=1000, base=10.0)
+        print('temporal grid for the model plot between ltime[0]-0.3',ltime[0]-0.5,' and ltime[-1]+0.5',ltime[-1]+0.5)
+        #print(t)
+
 
     # --- First guess magnetar model
     #logmodel=model_ax(np.log10(t),B,omi,delta)
@@ -327,10 +367,10 @@ if morphology == 'PA':
 
 if morphology == 'SP':
 
-    print('...fixing k to ', round(k,2))
+    print('...fixing k to (from alpha_post_plateau=k+1) ', round(k,2))
 
     # --- Fitting the model 
-    popt_sp,pcov_sp=fit_model.fitmodel_no_k(model_ax,lt,ll,dll,B,omi,delta)
+    popt_sp,pcov_sp = fit_model.fitmodel_no_k(model_ax,lt,ll,dll,B,omi,delta)
 
     # --- Computing best fit parameters
     B_bf,dB_bf,omi_bf,domi_bf,delta_bf,ddelta_bf,Pms,dPms,dof,mychi,p_value = define_bestfitparam.define_no_k(popt_sp,pcov_sp,lt,ll,dll,t0=T0_prompt,alphax=alphax,B=B,omi=omi,delta=delta,model=model_ax)
