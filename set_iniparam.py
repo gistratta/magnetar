@@ -10,7 +10,7 @@ from astropy import constants as const
 def setiniparam():
 
     # --- rest frame energy range at which compute the afterglow luminosity
-    Er1=1.0
+    Er1=0.1
     Er2=30.0
 
     # --- Astrophysical Constants
