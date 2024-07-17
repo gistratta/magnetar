@@ -2,11 +2,12 @@
 """
     Author: Giulia Stratta
 
-    v2: Jan 2024
+    v3: Jul 2024
     Purpose: compute magnetar parameters that best reproduce X-ray afterglow "plateau"
     following formalism described in Dall'Osso et al. 2011 and Stratta et al. 2018
 
     To run the script:
+    
     >python loglumfit.py
 
     Input:
@@ -184,7 +185,7 @@ print('...Building first guess B and P from SBPL fit results (L_tau and tau) and
 P = np.sqrt(k*3*1e52/((L_tau/collf)*tau))  # NS spin period in ms
 B = (np.sqrt(6.8/tau)) * 100 * P           # NS magnetic field strenght in 10^14 Gauss (Eq.9 in DallOsso+2023)
 omi = 2*np.pi/P                            # NS spin frequency in 1e3 Hz
-alphax = 0.1                               # alphax = (3-n)/2 where n is the NS braking index (see Stratta et al. 2018)
+#alphax = 0.0                               # alphax = (3-n)/2 where n is the NS braking index (see Stratta et al. 2018)
 print('')
 print('First Guess B and P (from empitical SBPL fit):')
 print('B[10^14 Gauss] = ',B)
